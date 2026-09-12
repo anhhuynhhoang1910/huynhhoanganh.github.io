@@ -3,448 +3,312 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Huỳnh Hoàng Anh — Financial Data Analyst Portfolio</title>
+  <title>Huỳnh Hoàng Anh — Financial Data Analyst</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #FBF7F2;
-      --surface:   #F5EFE6;
-      --card:      #FFFFFF;
-      --ink:       #241810;
-      --ink-muted: #6B5545;
-      --ink-faint: #A88F7D;
-      --accent:    #A0522D;
-      --accent-lt: #F4ECE3;
-      --accent-md: #C8845A;
-      --border:    rgba(100,60,20,0.10);
-      --border-md: rgba(100,60,20,0.18);
-      --success-bg:#EAF4EE;
-      --success-txt:#256F46;
+      --bg: #0B0F19;
+      --card-bg: rgba(22, 30, 49, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-hover: rgba(56, 189, 248, 0.4);
+      --text-main: #F1F5F9;
+      --text-muted: #94A3B8;
+      --accent-blue: #38BDF8;
+      --accent-emerald: #10B981;
+      --accent-purple: #818CF8;
+      --code-bg: #070A10;
     }
-
-    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background: var(--bg);
-      color: var(--ink);
+      color: var(--text-main);
       min-height: 100vh;
-      font-size: 15px;
-      font-weight: 500;
-      line-height: 1.7;
+      line-height: 1.6;
+      padding-bottom: 4rem;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.07) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.06) 0px, transparent 50%);
     }
 
-    /* ── NAV ── */
+    /* ── CONTAINER & NAV ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
     nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(251,247,242,0.94);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 0; margin-bottom: 2rem;
+      border-bottom: 1px solid var(--card-border);
     }
-
-    .nav-brand {
-      font-size: 17px; font-weight: 800;
-      color: var(--ink); text-decoration: none;
-      letter-spacing: -0.3px;
-    }
-
-    .nav-links { display: flex; gap: 8px; list-style: none; }
-
-    .nav-links a {
-      text-decoration: none;
-      font-size: 14px; font-weight: 600;
-      color: var(--ink-muted);
-      padding: 6px 14px; border-radius: 8px;
-      transition: all 0.2s ease;
-    }
-
-    .nav-links a:hover { background: var(--accent-lt); color: var(--accent); }
-    .nav-cta {
-      background: var(--accent) !important;
-      color: #fff !important;
-    }
-    .nav-cta:hover { background: var(--ink) !important; }
-
-    /* ── CONTAINER ── */
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* ── HERO / ABOVE THE FOLD ── */
-    .hero {
-      padding: 4.5rem 0 3.5rem;
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 3.5rem;
-      align-items: center;
-    }
-
-    .avatar-wrapper {
-      width: 190px; height: 190px;
-      border-radius: 24px; overflow: hidden;
-      border: 3px solid var(--border-md);
-      background: var(--surface);
-      box-shadow: 0 12px 30px rgba(100,50,10,0.06);
-    }
-    .avatar-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-
+    .brand { font-size: 17px; font-weight: 800; letter-spacing: -0.5px; }
+    .brand span { color: var(--accent-blue); }
     .status-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: var(--success-bg); color: var(--success-txt);
-      padding: 4px 12px; border-radius: 20px;
-      font-size: 12px; font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .status-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--success-txt);
-    }
-
-    .hero-title {
-      font-size: 34px; font-weight: 800;
-      line-height: 1.25; color: var(--ink);
-      letter-spacing: -0.8px; margin-bottom: 0.8rem;
-    }
-
-    .hero-tagline {
-      font-size: 16px; color: var(--ink-muted);
-      line-height: 1.6; margin-bottom: 1.5rem;
-    }
-
-    .hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-    
-    .btn {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 20px; border-radius: 10px;
-      font-size: 14px; font-weight: 700; text-decoration: none;
-      transition: all 0.2s ease;
+      background: rgba(16, 185, 129, 0.12); color: var(--accent-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 5px 14px; border-radius: 99px;
+      font-size: 12px; font-weight: 600;
     }
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { background: var(--ink); transform: translateY(-1px); }
-    .btn-secondary {
-      background: var(--card); color: var(--ink);
-      border: 1px solid var(--border-md);
-    }
-    .btn-secondary:hover { background: var(--accent-lt); }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); }
 
-    /* ── STATS SNAPSHOT ── */
-    .snapshot-bar {
+    /* ── BENTO GRID SYSTEM ── */
+    .bento-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 1.5rem; border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(100,50,10,0.03);
-      margin-bottom: 5rem;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.25rem;
     }
 
-    .stat-item { text-align: left; }
-    .stat-num { font-size: 24px; font-weight: 800; color: var(--accent); line-height: 1.2; }
-    .stat-desc { font-size: 13px; color: var(--ink-muted); margin-top: 4px; }
-
-    /* ── SECTION LABELS ── */
-    .section-label {
-      font-size: 12px; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--accent);
-      font-weight: 800; margin-bottom: 0.5rem;
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.75rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
     }
-    .section-heading {
-      font-size: 26px; font-weight: 800;
-      color: var(--ink); letter-spacing: -0.5px;
-      margin-bottom: 2rem;
-    }
-
-    /* ── SKILLS PILLS ── */
-    .skills-section { margin-bottom: 5rem; }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.2rem;
-    }
-    .skill-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 1.4rem; border-radius: 14px;
-    }
-    .skill-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 0.8rem; color: var(--ink); }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag {
-      background: var(--surface); color: var(--ink-muted);
-      font-size: 12px; font-weight: 600; padding: 4px 10px;
-      border-radius: 6px; border: 1px solid var(--border);
-    }
-
-    /* ── CASE STUDY CARDS (STAR MODEL) ── */
-    .projects-wrap { margin-bottom: 5rem; }
-    .projects-grid { display: flex; flex-direction: column; gap: 2rem; }
-
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px; padding: 2.2rem;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 20px rgba(100,50,10,0.02);
-    }
-
-    .project-card:hover {
-      border-color: var(--accent-md);
-      box-shadow: 0 12px 36px rgba(100,50,10,0.08);
+    .card:hover {
+      border-color: var(--card-border-hover);
       transform: translateY(-2px);
     }
 
-    .project-meta {
-      display: flex; justify-content: space-between;
-      align-items: center; margin-bottom: 1rem;
-    }
-    .project-category {
+    /* Grid Span Configurations */
+    .span-8 { grid-column: span 8; }
+    .span-4 { grid-column: span 4; }
+    .span-6 { grid-column: span 6; }
+    .span-12 { grid-column: span 12; }
+
+    /* ── HERO CELL ── */
+    .hero-tag {
       font-size: 12px; font-weight: 700; text-transform: uppercase;
-      color: var(--accent); letter-spacing: 0.05em;
+      letter-spacing: 0.1em; color: var(--accent-blue); margin-bottom: 0.75rem;
     }
-    .project-title {
-      font-size: 22px; font-weight: 800; color: var(--ink);
-      margin-bottom: 1rem; letter-spacing: -0.3px;
+    .hero-name {
+      font-size: 36px; font-weight: 800; line-height: 1.2;
+      letter-spacing: -1px; margin-bottom: 1rem;
     }
+    .hero-desc { color: var(--text-muted); font-size: 15px; margin-bottom: 1.5rem; }
+    .hero-desc strong { color: #fff; }
 
-    .project-grid-inner {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .project-story p {
-      font-size: 14px; color: var(--ink-muted);
-      line-height: 1.7; margin-bottom: 0.8rem;
-    }
-    .project-story strong { color: var(--ink); font-weight: 700; }
-
-    /* Outcome / Impact Highlight Box */
-    .project-outcome-box {
-      background: var(--accent-lt);
-      border-left: 4px solid var(--accent);
-      padding: 1.2rem;
-      border-radius: 0 12px 12px 0;
-      height: fit-content;
-    }
-    .outcome-label {
-      font-size: 11px; font-weight: 800; text-transform: uppercase;
-      color: var(--accent); letter-spacing: 0.08em; margin-bottom: 6px;
-    }
-    .outcome-text {
-      font-size: 13.5px; font-weight: 600; color: var(--ink);
-      line-height: 1.55;
-    }
-
-    .project-footer {
-      display: flex; justify-content: space-between;
-      align-items: center; border-top: 1px solid var(--border);
-      padding-top: 1.2rem; flex-wrap: wrap; gap: 1rem;
-    }
-
-    .project-links { display: flex; gap: 14px; }
-    .project-link {
+    .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-link {
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 13px; font-weight: 700; color: var(--accent);
-      text-decoration: none;
+      background: rgba(255, 255, 255, 0.05); color: #fff;
+      padding: 7px 14px; border-radius: 8px; border: 1px solid var(--card-border);
+      font-size: 13px; font-weight: 600; text-decoration: none;
+      transition: background 0.2s;
     }
-    .project-link:hover { text-decoration: underline; color: var(--ink); }
+    .btn-link:hover { background: rgba(255, 255, 255, 0.12); color: var(--accent-blue); }
 
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      text-align: center; padding: 3rem 0;
-      color: var(--ink-faint); font-size: 13px;
+    /* ── PROFILE PICTURE CELL ── */
+    .profile-card {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+    }
+    .avatar {
+      width: 110px; height: 110px; border-radius: 20px;
+      object-fit: cover; border: 2px solid var(--accent-blue);
+      margin-bottom: 1rem;
+    }
+    .profile-role { font-weight: 700; font-size: 15px; }
+    .profile-sub { font-size: 12px; color: var(--text-muted); }
+
+    /* ── STATS CELL ── */
+    .stat-number { font-size: 34px; font-weight: 800; color: var(--accent-blue); font-family: 'JetBrains Mono', monospace; }
+    .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+    /* ── LIVE CODE / SQL MOCKUP CELL ── */
+    .code-box {
+      background: var(--code-bg);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px; padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; color: #CBD5E1;
+      overflow-x: auto;
+    }
+    .code-header {
+      display: flex; gap: 6px; margin-bottom: 10px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #EF4444; } .dot-y { background: #F59E0B; } .dot-g { background: #10B981; }
+    .kw { color: #F472B6; font-weight: 600; }
+    .fn { color: #38BDF8; }
+    .str { color: #34D399; }
+
+    /* ── PROJECT CARDS ── */
+    .badge {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      padding: 3px 8px; border-radius: 6px;
+      background: rgba(56, 189, 248, 0.1); color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.2); margin-bottom: 0.8rem;
+    }
+    .project-title { font-size: 18px; font-weight: 700; margin-bottom: 0.5rem; }
+    .project-text { font-size: 13.5px; color: var(--text-muted); margin-bottom: 1.25rem; }
+
+    .impact-callout {
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 3px solid var(--accent-emerald);
+      padding: 8px 12px; border-radius: 0 8px 8px 0;
+      font-size: 12.5px; color: #E2E8F0; margin-bottom: 1.25rem;
+    }
+
+    .card-link {
+      font-size: 13px; font-weight: 700; color: var(--accent-blue);
+      text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
+    }
+    .card-link:hover { text-decoration: underline; }
+
+    /* ── TECH STACK TAGS ── */
+    .stack-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .tag {
+      font-size: 11.5px; background: rgba(255, 255, 255, 0.04);
+      padding: 4px 10px; border-radius: 6px; color: #CBD5E1;
+      border: 1px solid var(--card-border);
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 850px) {
-      .hero { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
-      .avatar-wrapper { margin: 0 auto; }
-      .hero-actions { justify-content: center; }
-      .snapshot-bar { grid-template-columns: 1fr; }
-      .project-grid-inner { grid-template-columns: 1fr; }
-      nav { padding: 0 1.2rem; }
+    @media (max-width: 860px) {
+      .span-8, .span-4, .span-6 { grid-column: span 12; }
+      .bento-grid { display: flex; flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-brand" href="#">Hoàng Anh.</a>
-  <ul class="nav-links">
-    <li><a href="#about">Về mình</a></li>
-    <li><a href="#skills">Kỹ năng</a></li>
-    <li><a href="#projects">Dự án</a></li>
-    <li><a href="https://linkedin.com/in/anh-hoang-b46583259" target="_blank" class="nav-cta">LinkedIn</a></li>
-  </ul>
-</nav>
-
-<main class="container">
-  <!-- HERO / ABOVE THE FOLD -->
-  <section id="about" class="hero">
-    <div class="avatar-wrapper">
-      <img src="myimage.jpg" alt="Huỳnh Hoàng Anh" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80'" />
+<div class="container">
+  <!-- NAV -->
+  <nav>
+    <div class="brand">hoanganh<span>.data</span></div>
+    <div class="status-badge">
+      <span class="status-dot"></span> Sẵn sàng thực tập / Fresher
     </div>
+  </nav>
 
-    <div>
-      <div class="status-badge">
-        <span class="status-dot"></span> Đang tìm kiếm cơ hội Data Analyst Intern / Fresher
-      </div>
-      <h1 class="hero-title">Biến dữ liệu thô thành quyết định kinh doanh chuẩn xác.</h1>
-      <p class="hero-tagline">
-        Mình là <strong>Huỳnh Hoàng Anh</strong>, sinh viên Công nghệ Tài chính (Fintech) tại UFM. Mình kết hợp tư duy phân tích dữ liệu chuyên sâu (SQL, Python, Power BI) với nền tảng tài chính doanh nghiệp để giải quyết các bài toán tối ưu vận hành và doanh thu.
+  <!-- BENTO GRID -->
+  <main class="bento-grid">
+    
+    <!-- 1. HERO CARD (Span 8) -->
+    <section class="card span-8">
+      <p class="hero-tag">Fintech × Analytics</p>
+      <h1 class="hero-name">Huỳnh Hoàng Anh</h1>
+      <p class="hero-desc">
+        Sinh viên Công nghệ Tài chính (Fintech) tại <strong>UFM</strong>. Chuyên môn hóa vào việc biến dữ liệu kinh doanh phức tạp thành các luồng xử lý sạch và báo cáo trực quan hỗ trợ ra quyết định.
       </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">Xem Case Studies thực chiến ↓</a>
-        <a href="https://github.com/anhhuynhhoang1910" target="_blank" class="btn btn-secondary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          GitHub Profile
+      <div class="social-links">
+        <a class="btn-link" href="https://github.com/anhhuynhhoang1910" target="_blank">
+          GitHub ↗
         </a>
+        <a class="btn-link" href="https://linkedin.com/in/anh-hoang-b46583259" target="_blank">
+          LinkedIn ↗
+        </a>
+        <span class="btn-link" style="color: var(--text-muted); border-color: transparent;">📍 TP. Hồ Chí Minh</span>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- QUICK SNAPSHOT BAR -->
-  <section class="snapshot-bar">
-    <div class="stat-item">
-      <div class="stat-num">56,000+</div>
-      <div class="stat-desc">Dòng dữ liệu bất động sản xử lý & chuẩn hóa bằng SQL</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">Fintech + DA</div>
-      <div class="stat-desc">Giao thoa giữa nghiệp vụ Tài chính và Kỹ thuật Dữ liệu</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">100%</div>
-      <div class="stat-desc">Dự án đi kèm tài liệu phân tích và code chuẩn hóa</div>
-    </div>
-  </section>
+    <!-- 2. AVATAR & IDENTITY (Span 4) -->
+    <aside class="card span-4 profile-card">
+      <img class="avatar" src="myimage.jpg" alt="Huỳnh Hoàng Anh" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&q=80'" />
+      <div class="profile-role">Data Analyst</div>
+      <div class="profile-sub">Nghiệp vụ Tài chính Doanh nghiệp</div>
+    </aside>
 
-  <!-- SKILLS SECTION -->
-  <section id="skills" class="skills-section">
-    <p class="section-label">Năng lực cốt lõi</p>
-    <h2 class="section-heading">Kỹ thuật & Công cụ</h2>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <h4>Data Query & Processing</h4>
-        <div class="skill-tags">
-          <span class="tag">SQL (MySQL / SQL Server)</span>
-          <span class="tag">CTEs & Window Functions</span>
-          <span class="tag">Python (Pandas, NumPy)</span>
-          <span class="tag">Data Cleaning Pipeline</span>
+    <!-- 3. METRIC CELL 1 (Span 4) -->
+    <div class="card span-4">
+      <div class="stat-number">56,000+</div>
+      <div class="stat-label">Bản ghi Bất động sản đã xử lý & chuẩn hóa bằng SQL thuần</div>
+    </div>
+
+    <!-- 4. METRIC CELL 2 (Span 4) -->
+    <div class="card span-4">
+      <div class="stat-number">Fintech Core</div>
+      <div class="stat-label">Hiểu rõ cấu trúc Báo cáo Tài chính, Chỉ số Định giá & Dòng tiền</div>
+    </div>
+
+    <!-- 5. METRIC CELL 3 (Span 4) -->
+    <div class="card span-4">
+      <div class="stat-number">ETL Pipeline</div>
+      <div class="stat-label">Kỹ năng xử lý dữ liệu khuyết thiếu, CTEs & Phân rã dữ liệu</div>
+    </div>
+
+    <!-- 6. CODE LOGIC SHOWCASE (Span 6) -->
+    <section class="card span-6">
+      <span class="badge">Data Cleaning Logic</span>
+      <h3 class="project-title">Tư duy truy vấn SQL thực chiến</h3>
+      <p class="project-text">Minh họa kỹ thuật khử trùng lặp và lấp dữ liệu khuyết thiếu bằng Window Functions thay vì xóa thủ công:</p>
+      
+      <div class="code-box">
+        <div class="code-header">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
         </div>
+        <pre><code><span class="kw">WITH</span> RowNumCTE <span class="kw">AS</span> (
+  <span class="kw">SELECT</span> *,
+    <span class="fn">ROW_NUMBER</span>() <span class="kw">OVER</span> (
+      <span class="kw">PARTITION BY</span> ParcelID, PropertyAddress, 
+                   SalePrice, LegalReference
+      <span class="kw">ORDER BY</span> UniqueID
+    ) <span class="kw">AS</span> row_num
+  <span class="kw">FROM</span> NashvilleHousing
+)
+<span class="kw">DELETE FROM</span> RowNumCTE 
+<span class="kw">WHERE</span> row_num > 1;</code></pre>
       </div>
-      <div class="skill-card">
-        <h4>BI & Data Storytelling</h4>
-        <div class="skill-tags">
-          <span class="tag">Power BI</span>
-          <span class="tag">DAX Measures</span>
-          <span class="tag">Interactive Dashboard</span>
-          <span class="tag">Data Modeling (Star Schema)</span>
-        </div>
+    </section>
+
+    <!-- 7. FEATURED PROJECT 1 (Span 6) -->
+    <article class="card span-6">
+      <span class="badge" style="color: var(--accent-emerald); border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.08);">Case Study #1</span>
+      <h3 class="project-title">Nashville Housing Data Cleaning</h3>
+      <p class="project-text">
+        Chuẩn hóa tập dữ liệu bất động sản thực tế bị phân mảnh nặng: lấp địa chỉ trống qua Self-Join, phân tách địa chỉ và xử lý trùng lặp.
+      </p>
+      <div class="impact-callout">
+        <strong>Kết quả:</strong> 100% dữ liệu được làm sạch đồng nhất, sẵn sàng nạp trực tiếp vào kho dữ liệu phục vụ mô hình phân tích giá.
       </div>
-      <div class="skill-card">
-        <h4>Domain & Business Acumen</h4>
-        <div class="skill-tags">
-          <span class="tag">Phân tích Báo cáo Tài chính</span>
-          <span class="tag">Fintech & Banking Workflows</span>
-          <span class="tag">Workforce & Operations Analytics</span>
-        </div>
+      <div class="stack-tags" style="margin-bottom: 1.25rem;">
+        <span class="tag">SQL Server</span>
+        <span class="tag">Self Join</span>
+        <span class="tag">CTEs</span>
+        <span class="tag">Data Wrangling</span>
       </div>
-    </div>
-  </section>
+      <a class="card-link" href="https://github.com/anhhuynhhoang1910/nashville-housing-data-cleaning" target="_blank">
+        Xem Repository & SQL Script →
+      </a>
+    </article>
 
-  <!-- PROJECTS (OUTCOME-FIRST MODEL) -->
-  <section id="projects" class="projects-wrap">
-    <p class="section-label">Case Studies</p>
-    <h2 class="section-heading">Dự án phân tích chọn lọc</h2>
+    <!-- 8. FEATURED PROJECT 2 (Span 8) -->
+    <article class="card span-8">
+      <span class="badge" style="color: var(--accent-purple); border-color: rgba(129,140,248,0.3); background: rgba(129,140,248,0.08);">Case Study #2</span>
+      <h3 class="project-title">Remote vs. Onsite: Stress & Hiệu suất Lao động</h3>
+      <p class="project-text">
+        Phân tích tương quan giữa địa điểm làm việc (Workplace) và mức độ căng thẳng tâm lý của nhân viên. Dữ liệu chứng minh mô hình làm việc linh hoạt (Hybrid) giúp giảm thiểu áp lực hơn so với làm việc cô lập hoàn toàn.
+      </p>
+      <div class="impact-callout">
+        <strong>Insight kinh doanh:</strong> Cung cấp dữ liệu thực chứng cho phòng HR tái thiết kế chính sách phúc lợi và lịch trực xoay vòng.
+      </div>
+      <a class="card-link" href="https://github.com/anhhuynhhoang1910/Impact-of-Remote-and-Onsite-Work-Locations" target="_blank">
+        Xem Phân tích Đầy đủ trên GitHub →
+      </a>
+    </article>
 
-    <div class="projects-grid">
-      <!-- Project 01 -->
-      <article class="project-card">
-        <div class="project-meta">
-          <span class="project-category">Database & ETL Pipeline</span>
-          <span class="tag">MySQL / SQL</span>
-        </div>
-        <h3 class="project-title">Nashville Housing: Chuẩn hóa & Làm sạch dữ liệu quy mô lớn</h3>
-        
-        <div class="project-grid-inner">
-          <div class="project-story">
-            <p><strong>Vấn đề:</strong> Tập dữ liệu bất động sản hơn 56,000 bản ghi gặp tình trạng phân mảnh nghiêm trọng: thiếu địa chỉ tài sản, định dạng ngày tháng không nhất quán, trường địa chỉ gộp chung và tồn tại nhiều bản ghi trùng lặp.</p>
-            <p><strong>Giải pháp:</strong> Xây dựng quy trình làm sạch toàn diện bằng SQL thuần: tự động điền địa chỉ khuyết thiếu thông qua <code>SELF JOIN</code>, bóc tách địa chỉ bằng <code>SUBSTRING</code> / <code>PARSENAME</code>, chuẩn hóa trường nhị phân và khử trùng lặp dữ liệu bằng CTE kết hợp <code>ROW_NUMBER()</code>.</p>
-          </div>
-          <div class="project-outcome-box">
-            <div class="outcome-label">Tác động cốt lõi</div>
-            <div class="outcome-text">
-              Làm sạch 100% dữ liệu địa chỉ khuyết thiếu có thể tham chiếu, loại bỏ hoàn toàn các bản ghi rác, sẵn sàng đưa vào data warehouse phục vụ mô hình định giá.
-            </div>
-          </div>
-        </div>
+    <!-- 9. SKILLS SUMMARY (Span 4) -->
+    <section class="card span-4">
+      <p class="hero-tag">Tech Stack</p>
+      <div class="stack-tags">
+        <span class="tag">SQL (MySQL / SQL Server)</span>
+        <span class="tag">Python (Pandas, NumPy)</span>
+        <span class="tag">Power BI & DAX</span>
+        <span class="tag">Financial Modeling</span>
+        <span class="tag">ETL & Data Cleaning</span>
+        <span class="tag">Star Schema Design</span>
+      </div>
+    </section>
 
-        <div class="project-footer">
-          <div class="skill-tags">
-            <span class="tag">Self Join</span>
-            <span class="tag">CTEs</span>
-            <span class="tag">Window Functions</span>
-            <span class="tag">Data Integrity</span>
-          </div>
-          <div class="project-links">
-            <a class="project-link" href="https://github.com/anhhuynhhoang1910/nashville-housing-data-cleaning" target="_blank">Xem SQL Repository →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 02 -->
-      <article class="project-card">
-        <div class="project-meta">
-          <span class="project-category">Workforce & HR Analytics</span>
-          <span class="tag">Exploratory Data Analysis</span>
-        </div>
-        <h3 class="project-title">Tác động của mô hình Remote vs. Onsite đối với Hiệu suất & Stress</h3>
-        
-        <div class="project-grid-inner">
-          <div class="project-story">
-            <p><strong>Vấn đề:</strong> Sau dịch, doanh nghiệp đối mặt với bài toán tối ưu giữa chi phí văn phòng và rủi ro kiệt sức (burnout) của nhân sự khi làm việc từ xa kéo dài.</p>
-            <p><strong>Giải pháp:</strong> Khai phá dữ liệu khảo sát nhân sự đa chiều, phân tích tương quan giữa số giờ làm việc, địa điểm và mức độ cân bằng cuộc sống; trực quan hóa các cụm nhân sự có nguy cơ stress cao nhất.</p>
-          </div>
-          <div class="project-outcome-box">
-            <div class="outcome-label">Tác động cốt lõi</div>
-            <div class="outcome-text">
-              Chỉ ra mô hình Hybrid giúp giảm 24% áp lực tâm lý so với Full-Remote đơn độc, cung cấp cơ sở dữ liệu thực chứng cho chính sách nhân sự linh hoạt.
-            </div>
-          </div>
-        </div>
-
-        <div class="project-footer">
-          <div class="skill-tags">
-            <span class="tag">Data Analysis</span>
-            <span class="tag">Statistical Correlation</span>
-            <span class="tag">Insights Generation</span>
-          </div>
-          <div class="project-links">
-            <a class="project-link" href="https://github.com/anhhuynhhoang1910/Impact-of-Remote-and-Onsite-Work-Locations" target="_blank">Xem Báo Cáo Chi Tiết →</a>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="container">
-    <span>© 2026 Huỳnh Hoàng Anh · Portfolio Data Analyst</span>
-  </div>
-</footer>
+  </main>
+</div>
 
 </body>
 </html>
