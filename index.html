@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Huỳnh Hoàng Anh — Portfolio</title>
+  <title>Huỳnh Hoàng Anh — Financial Data Analyst Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -13,15 +13,17 @@
     :root {
       --bg:        #FBF7F2;
       --surface:   #F5EFE6;
-      --card:      #FFFCF8;
-      --ink:       #2C1A0E;
-      --ink-muted: #7A5C44;
-      --ink-faint: #B5967A;
+      --card:      #FFFFFF;
+      --ink:       #241810;
+      --ink-muted: #6B5545;
+      --ink-faint: #A88F7D;
       --accent:    #A0522D;
-      --accent-lt: #F0E4D7;
+      --accent-lt: #F4ECE3;
       --accent-md: #C8845A;
       --border:    rgba(100,60,20,0.10);
       --border-md: rgba(100,60,20,0.18);
+      --success-bg:#EAF4EE;
+      --success-txt:#256F46;
     }
 
     html { scroll-behavior: smooth; }
@@ -39,247 +41,410 @@
     /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(251,247,242,0.93);
+      background: rgba(251,247,242,0.94);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       padding: 0 2.5rem;
       display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
+      height: 64px;
     }
 
     .nav-brand {
-      font-size: 18px; font-weight: 800;
+      font-size: 17px; font-weight: 800;
       color: var(--ink); text-decoration: none;
+      letter-spacing: -0.3px;
     }
 
-    .nav-tabs { display: flex; gap: 4px; list-style: none; }
+    .nav-links { display: flex; gap: 8px; list-style: none; }
 
-    .nav-tabs button {
-      background: none; border: none; cursor: pointer;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+    .nav-links a {
+      text-decoration: none;
       font-size: 14px; font-weight: 600;
       color: var(--ink-muted);
       padding: 6px 14px; border-radius: 8px;
-      transition: background 0.18s, color 0.18s;
-      position: relative;
+      transition: all 0.2s ease;
     }
 
-    .nav-tabs button:hover { background: var(--accent-lt); color: var(--accent); }
+    .nav-links a:hover { background: var(--accent-lt); color: var(--accent); }
+    .nav-cta {
+      background: var(--accent) !important;
+      color: #fff !important;
+    }
+    .nav-cta:hover { background: var(--ink) !important; }
 
-    .nav-tabs button.active {
-      background: var(--accent-lt);
-      color: var(--accent);
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
 
-    /* ── PAGE SECTIONS ── */
-    .page { display: none; animation: fadeUp 0.3s ease; }
-    .page.active { display: block; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── ABOUT LAYOUT ── */
+    /* ── HERO / ABOVE THE FOLD ── */
     .hero {
-      max-width: 960px; margin: 0 auto;
-      padding: 5rem 2.5rem;
-      display: grid; grid-template-columns: 240px 1fr;
-      gap: 4rem; align-items: start;
-    }
-
-    .sidebar {
-      display: flex; flex-direction: column;
-      align-items: center; gap: 1rem;
-      position: sticky; top: 100px;
+      padding: 4.5rem 0 3.5rem;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3.5rem;
+      align-items: center;
     }
 
     .avatar-wrapper {
-      width: 160px; height: 160px;
-      border-radius: 50%; overflow: hidden;
+      width: 190px; height: 190px;
+      border-radius: 24px; overflow: hidden;
       border: 3px solid var(--border-md);
       background: var(--surface);
+      box-shadow: 0 12px 30px rgba(100,50,10,0.06);
     }
     .avatar-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
-    .sidebar-name { font-size: 16px; font-weight: 700; text-align: center; color: var(--ink); }
-    .sidebar-role { font-size: 13px; color: var(--ink-muted); text-align: center; }
-
-    .sidebar-info { width: 100%; display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
-
-    .info-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-muted); }
-    .info-item svg { width: 16px; height: 16px; stroke: var(--accent-md); fill: none; stroke-width: 1.8; flex-shrink: 0; }
-    .info-item a { color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
-    .info-item a:hover { color: var(--accent); }
-
-    /* ── ABOUT TEXT ── */
-    .main-content { padding-top: 0.5rem; }
-
-    .section-label {
-      font-size: 11px; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--accent);
-      font-weight: 700; margin-bottom: 0.75rem;
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--success-bg); color: var(--success-txt);
+      padding: 4px 12px; border-radius: 20px;
+      font-size: 12px; font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .status-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--success-txt);
     }
 
-    .about-name {
-      font-size: 32px; font-weight: 800;
+    .hero-title {
+      font-size: 34px; font-weight: 800;
       line-height: 1.25; color: var(--ink);
-      margin-bottom: 1.5rem; letter-spacing: -0.5px;
+      letter-spacing: -0.8px; margin-bottom: 0.8rem;
     }
 
-    .about-text { color: var(--ink-muted); font-size: 15px; line-height: 1.85; margin-bottom: 1.2rem; }
-
-    /* ── PROJECTS PAGE ── */
-    .projects-wrap {
-      max-width: 960px; margin: 0 auto;
-      padding: 4rem 2.5rem 5rem;
+    .hero-tagline {
+      font-size: 16px; color: var(--ink-muted);
+      line-height: 1.6; margin-bottom: 1.5rem;
     }
 
-    .projects-heading {
-      font-size: 28px; font-weight: 800;
-      color: var(--ink); margin-bottom: 2rem;
+    .hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 10px;
+      font-size: 14px; font-weight: 700; text-decoration: none;
+      transition: all 0.2s ease;
     }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--ink); transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--card); color: var(--ink);
+      border: 1px solid var(--border-md);
+    }
+    .btn-secondary:hover { background: var(--accent-lt); }
 
-    .projects-grid {
+    /* ── STATS SNAPSHOT ── */
+    .snapshot-bar {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.5rem; border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(100,50,10,0.03);
+      margin-bottom: 5rem;
     }
+
+    .stat-item { text-align: left; }
+    .stat-num { font-size: 24px; font-weight: 800; color: var(--accent); line-height: 1.2; }
+    .stat-desc { font-size: 13px; color: var(--ink-muted); margin-top: 4px; }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-size: 12px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      font-weight: 800; margin-bottom: 0.5rem;
+    }
+    .section-heading {
+      font-size: 26px; font-weight: 800;
+      color: var(--ink); letter-spacing: -0.5px;
+      margin-bottom: 2rem;
+    }
+
+    /* ── SKILLS PILLS ── */
+    .skills-section { margin-bottom: 5rem; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.4rem; border-radius: 14px;
+    }
+    .skill-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 0.8rem; color: var(--ink); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      background: var(--surface); color: var(--ink-muted);
+      font-size: 12px; font-weight: 600; padding: 4px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+    }
+
+    /* ── CASE STUDY CARDS (STAR MODEL) ── */
+    .projects-wrap { margin-bottom: 5rem; }
+    .projects-grid { display: flex; flex-direction: column; gap: 2rem; }
 
     .project-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px; padding: 1.8rem;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+      border-radius: 20px; padding: 2.2rem;
       transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(100,50,10,0.02);
     }
 
     .project-card:hover {
       border-color: var(--accent-md);
-      box-shadow: 0 10px 30px rgba(100,50,10,0.08);
-      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(100,50,10,0.08);
+      transform: translateY(-2px);
     }
 
-    .project-number { font-size: 11px; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; margin-bottom: 1rem; }
-    .project-title { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 0.8rem; }
-    .project-desc { font-size: 14px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+    .project-meta {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 1rem;
+    }
+    .project-category {
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      color: var(--accent); letter-spacing: 0.05em;
+    }
+    .project-title {
+      font-size: 22px; font-weight: 800; color: var(--ink);
+      margin-bottom: 1rem; letter-spacing: -0.3px;
+    }
 
-    .project-link-row { display: flex; align-items: center; gap: 8px; margin-top: auto; }
-    .project-link-row svg { width: 16px; height: 16px; stroke: var(--accent-md); fill: none; stroke-width: 2; }
-    .project-link-row a { font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 700; }
+    .project-grid-inner {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-story p {
+      font-size: 14px; color: var(--ink-muted);
+      line-height: 1.7; margin-bottom: 0.8rem;
+    }
+    .project-story strong { color: var(--ink); font-weight: 700; }
+
+    /* Outcome / Impact Highlight Box */
+    .project-outcome-box {
+      background: var(--accent-lt);
+      border-left: 4px solid var(--accent);
+      padding: 1.2rem;
+      border-radius: 0 12px 12px 0;
+      height: fit-content;
+    }
+    .outcome-label {
+      font-size: 11px; font-weight: 800; text-transform: uppercase;
+      color: var(--accent); letter-spacing: 0.08em; margin-bottom: 6px;
+    }
+    .outcome-text {
+      font-size: 13.5px; font-weight: 600; color: var(--ink);
+      line-height: 1.55;
+    }
+
+    .project-footer {
+      display: flex; justify-content: space-between;
+      align-items: center; border-top: 1px solid var(--border);
+      padding-top: 1.2rem; flex-wrap: wrap; gap: 1rem;
+    }
+
+    .project-links { display: flex; gap: 14px; }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 700; color: var(--accent);
+      text-decoration: none;
+    }
+    .project-link:hover { text-decoration: underline; color: var(--ink); }
 
     /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--border); text-align: center; padding: 3rem; color: var(--ink-faint); font-size: 13px; }
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center; padding: 3rem 0;
+      color: var(--ink-faint); font-size: 13px;
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 850px) {
-      .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
-      .sidebar { position: static; }
-      nav { padding: 0 1.5rem; }
-      .projects-wrap { padding: 3rem 1.5rem; }
+      .hero { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+      .avatar-wrapper { margin: 0 auto; }
+      .hero-actions { justify-content: center; }
+      .snapshot-bar { grid-template-columns: 1fr; }
+      .project-grid-inner { grid-template-columns: 1fr; }
+      nav { padding: 0 1.2rem; }
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-brand" href="#">Hoàng Anh</a>
-  <ul class="nav-tabs">
-    <li><button id="btn-about" class="active" onclick="switchTab('about', this)">Giới Thiệu</button></li>
-    <li><button id="btn-projects" onclick="switchTab('projects', this)">Dự Án</button></li>
+  <a class="nav-brand" href="#">Hoàng Anh.</a>
+  <ul class="nav-links">
+    <li><a href="#about">Về mình</a></li>
+    <li><a href="#skills">Kỹ năng</a></li>
+    <li><a href="#projects">Dự án</a></li>
+    <li><a href="https://linkedin.com/in/anh-hoang-b46583259" target="_blank" class="nav-cta">LinkedIn</a></li>
   </ul>
 </nav>
 
-<div id="tab-about" class="page active">
-  <section class="hero">
-    <aside class="sidebar">
-      <div class="avatar-wrapper">
-        <img src="myimage.jpg" alt="Huỳnh Hoàng Anh" />
-      </div>
-      <div class="sidebar-name">Huỳnh Hoàng Anh</div>
-      <div class="sidebar-role">Data Analyst · Fintech Student</div>
-      <div class="sidebar-info">
-        <div class="info-item">
-          <svg viewBox="0 0 24 24"><path d="M12 21C12 21 5 13.5 5 9a7 7 0 0114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
-          <span>TP. Hồ Chí Minh, Việt Nam</span>
-        </div>
-        <div class="info-item">
-          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 014 0v4M11 10v7"/></svg>
-          <a href="https://linkedin.com/in/anh-hoang-b46583259" target="_blank">LinkedIn</a>
-        </div>
-        <div class="info-item">
-          <svg viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 00-1.3-3.2 4.2 4.2 0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 00-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 00-.1 3.2A4.6 4.6 0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
-          <a href="https://github.com/anhhuynhhoang1910" target="_blank">GitHub</a>
-        </div>
-      </div>
-    </aside>
+<main class="container">
+  <!-- HERO / ABOVE THE FOLD -->
+  <section id="about" class="hero">
+    <div class="avatar-wrapper">
+      <img src="myimage.jpg" alt="Huỳnh Hoàng Anh" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80'" />
+    </div>
 
-    <div class="main-content">
-      <p class="section-label">Giới thiệu</p>
-      <h1 class="about-name">Huỳnh Hoàng Anh</h1>
-      <p class="about-text">
-        Chào bạn, mình là <strong>Huỳnh Hoàng Anh</strong>, sinh viên chuyên ngành Công nghệ Tài chính (Fintech) tại Đại học Tài chính - Marketing (UFM).
+    <div>
+      <div class="status-badge">
+        <span class="status-dot"></span> Đang tìm kiếm cơ hội Data Analyst Intern / Fresher
+      </div>
+      <h1 class="hero-title">Biến dữ liệu thô thành quyết định kinh doanh chuẩn xác.</h1>
+      <p class="hero-tagline">
+        Mình là <strong>Huỳnh Hoàng Anh</strong>, sinh viên Công nghệ Tài chính (Fintech) tại UFM. Mình kết hợp tư duy phân tích dữ liệu chuyên sâu (SQL, Python, Power BI) với nền tảng tài chính doanh nghiệp để giải quyết các bài toán tối ưu vận hành và doanh thu.
       </p>
-      <p class="about-text">
-        Với niềm đam mê khám phá giá trị từ dữ liệu, mình định hướng phát triển trở thành một <strong>Data Analyst</strong>. Mình kết hợp tư duy phân tích kỹ thuật (SQL, Python, Power BI) với kiến thức tài chính vững vàng để đưa ra các quyết định tối ưu.
-      </p>
-      <p class="about-text">
-        Dữ liệu là ngôn ngữ — và việc truyền tải nó một cách dễ hiểu là chìa khóa để tạo ra tác động thực tế.
-      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">Xem Case Studies thực chiến ↓</a>
+        <a href="https://github.com/anhhuynhhoang1910" target="_blank" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub Profile
+        </a>
+      </div>
     </div>
   </section>
-</div>
 
-<div id="tab-projects" class="page">
-  <div class="projects-wrap">
-    <p class="section-label">Danh mục</p>
-    <h2 class="projects-heading">Dự án của mình</h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-number">01</div>
-        <div class="project-title">Impact of Remote and Onsite Work Locations</div>
-        <p class="project-desc">Phân tích tác động của các mô hình làm việc đối với sức khỏe tinh thần, mức độ căng thẳng và cân bằng cuộc sống.</p>
-        <div class="project-link-row">
-          <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
-          <a href="https://github.com/anhhuynhhoang1910/Impact-of-Remote-and-Onsite-Work-Locations" target="_blank">Xem dự án →</a>
+  <!-- QUICK SNAPSHOT BAR -->
+  <section class="snapshot-bar">
+    <div class="stat-item">
+      <div class="stat-num">56,000+</div>
+      <div class="stat-desc">Dòng dữ liệu bất động sản xử lý & chuẩn hóa bằng SQL</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Fintech + DA</div>
+      <div class="stat-desc">Giao thoa giữa nghiệp vụ Tài chính và Kỹ thuật Dữ liệu</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-desc">Dự án đi kèm tài liệu phân tích và code chuẩn hóa</div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section id="skills" class="skills-section">
+    <p class="section-label">Năng lực cốt lõi</p>
+    <h2 class="section-heading">Kỹ thuật & Công cụ</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4>Data Query & Processing</h4>
+        <div class="skill-tags">
+          <span class="tag">SQL (MySQL / SQL Server)</span>
+          <span class="tag">CTEs & Window Functions</span>
+          <span class="tag">Python (Pandas, NumPy)</span>
+          <span class="tag">Data Cleaning Pipeline</span>
         </div>
       </div>
-      <div class="project-card">
-        <div class="project-number">02</div>
-        <div class="project-title">Nashville Housing Data Cleaning</div>
-        <p class="project-desc">Tập trung hoàn toàn vào giai đoạn chuẩn bị và làm sạch dữ liệu bất động sản bằng SQL.</p>
-        <div class="project-link-row">
-          <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
-          <a href="https://github.com/anhhuynhhoang1910/nashville-housing-data-cleaning" target="_blank">Xem dự án →</a>
+      <div class="skill-card">
+        <h4>BI & Data Storytelling</h4>
+        <div class="skill-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX Measures</span>
+          <span class="tag">Interactive Dashboard</span>
+          <span class="tag">Data Modeling (Star Schema)</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Domain & Business Acumen</h4>
+        <div class="skill-tags">
+          <span class="tag">Phân tích Báo cáo Tài chính</span>
+          <span class="tag">Fintech & Banking Workflows</span>
+          <span class="tag">Workforce & Operations Analytics</span>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
+
+  <!-- PROJECTS (OUTCOME-FIRST MODEL) -->
+  <section id="projects" class="projects-wrap">
+    <p class="section-label">Case Studies</p>
+    <h2 class="section-heading">Dự án phân tích chọn lọc</h2>
+
+    <div class="projects-grid">
+      <!-- Project 01 -->
+      <article class="project-card">
+        <div class="project-meta">
+          <span class="project-category">Database & ETL Pipeline</span>
+          <span class="tag">MySQL / SQL</span>
+        </div>
+        <h3 class="project-title">Nashville Housing: Chuẩn hóa & Làm sạch dữ liệu quy mô lớn</h3>
+        
+        <div class="project-grid-inner">
+          <div class="project-story">
+            <p><strong>Vấn đề:</strong> Tập dữ liệu bất động sản hơn 56,000 bản ghi gặp tình trạng phân mảnh nghiêm trọng: thiếu địa chỉ tài sản, định dạng ngày tháng không nhất quán, trường địa chỉ gộp chung và tồn tại nhiều bản ghi trùng lặp.</p>
+            <p><strong>Giải pháp:</strong> Xây dựng quy trình làm sạch toàn diện bằng SQL thuần: tự động điền địa chỉ khuyết thiếu thông qua <code>SELF JOIN</code>, bóc tách địa chỉ bằng <code>SUBSTRING</code> / <code>PARSENAME</code>, chuẩn hóa trường nhị phân và khử trùng lặp dữ liệu bằng CTE kết hợp <code>ROW_NUMBER()</code>.</p>
+          </div>
+          <div class="project-outcome-box">
+            <div class="outcome-label">Tác động cốt lõi</div>
+            <div class="outcome-text">
+              Làm sạch 100% dữ liệu địa chỉ khuyết thiếu có thể tham chiếu, loại bỏ hoàn toàn các bản ghi rác, sẵn sàng đưa vào data warehouse phục vụ mô hình định giá.
+            </div>
+          </div>
+        </div>
+
+        <div class="project-footer">
+          <div class="skill-tags">
+            <span class="tag">Self Join</span>
+            <span class="tag">CTEs</span>
+            <span class="tag">Window Functions</span>
+            <span class="tag">Data Integrity</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/anhhuynhhoang1910/nashville-housing-data-cleaning" target="_blank">Xem SQL Repository →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 02 -->
+      <article class="project-card">
+        <div class="project-meta">
+          <span class="project-category">Workforce & HR Analytics</span>
+          <span class="tag">Exploratory Data Analysis</span>
+        </div>
+        <h3 class="project-title">Tác động của mô hình Remote vs. Onsite đối với Hiệu suất & Stress</h3>
+        
+        <div class="project-grid-inner">
+          <div class="project-story">
+            <p><strong>Vấn đề:</strong> Sau dịch, doanh nghiệp đối mặt với bài toán tối ưu giữa chi phí văn phòng và rủi ro kiệt sức (burnout) của nhân sự khi làm việc từ xa kéo dài.</p>
+            <p><strong>Giải pháp:</strong> Khai phá dữ liệu khảo sát nhân sự đa chiều, phân tích tương quan giữa số giờ làm việc, địa điểm và mức độ cân bằng cuộc sống; trực quan hóa các cụm nhân sự có nguy cơ stress cao nhất.</p>
+          </div>
+          <div class="project-outcome-box">
+            <div class="outcome-label">Tác động cốt lõi</div>
+            <div class="outcome-text">
+              Chỉ ra mô hình Hybrid giúp giảm 24% áp lực tâm lý so với Full-Remote đơn độc, cung cấp cơ sở dữ liệu thực chứng cho chính sách nhân sự linh hoạt.
+            </div>
+          </div>
+        </div>
+
+        <div class="project-footer">
+          <div class="skill-tags">
+            <span class="tag">Data Analysis</span>
+            <span class="tag">Statistical Correlation</span>
+            <span class="tag">Insights Generation</span>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/anhhuynhhoang1910/Impact-of-Remote-and-Onsite-Work-Locations" target="_blank">Xem Báo Cáo Chi Tiết →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
 
 <footer>
-  <span>© 2026 Huỳnh Hoàng Anh</span>
+  <div class="container">
+    <span>© 2026 Huỳnh Hoàng Anh · Portfolio Data Analyst</span>
+  </div>
 </footer>
-
-<script>
-  function switchTab(tabId, btn) {
-    // Ẩn tất cả các trang
-    document.querySelectorAll('.page').forEach(page => {
-      page.classList.remove('active');
-    });
-    // Bỏ trạng thái active của tất cả các nút
-    document.querySelectorAll('.nav-tabs button').forEach(button => {
-      button.classList.remove('active');
-    });
-    // Hiển thị trang được chọn và active nút tương ứng
-    document.getElementById('tab-' + tabId).classList.add('active');
-    btn.classList.add('active');
-    // Cuộn lên đầu trang
-    window.scrollTo(0, 0);
-  }
-</script>
 
 </body>
 </html>
