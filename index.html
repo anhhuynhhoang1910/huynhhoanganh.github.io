@@ -3,312 +3,283 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Huỳnh Hoàng Anh — Financial Data Analyst</title>
+  <title>Huỳnh Hoàng Anh — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0B0F19;
-      --card-bg: rgba(22, 30, 49, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --card-border-hover: rgba(56, 189, 248, 0.4);
-      --text-main: #F1F5F9;
-      --text-muted: #94A3B8;
-      --accent-blue: #38BDF8;
-      --accent-emerald: #10B981;
-      --accent-purple: #818CF8;
-      --code-bg: #070A10;
+      --bg:        #FBF7F2;
+      --surface:   #F5EFE6;
+      --card:      #FFFCF8;
+      --ink:       #2C1A0E;
+      --ink-muted: #7A5C44;
+      --ink-faint: #B5967A;
+      --accent:    #A0522D;
+      --accent-lt: #F0E4D7;
+      --accent-md: #C8845A;
+      --border:    rgba(100,60,20,0.10);
+      --border-md: rgba(100,60,20,0.18);
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background: var(--bg);
-      color: var(--text-main);
+      color: var(--ink);
       min-height: 100vh;
-      line-height: 1.6;
-      padding-bottom: 4rem;
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.07) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.06) 0px, transparent 50%);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.7;
     }
 
-    /* ── CONTAINER & NAV ── */
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-
+    /* ── NAV ── */
     nav {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.5rem 0; margin-bottom: 2rem;
-      border-bottom: 1px solid var(--card-border);
-    }
-    .brand { font-size: 17px; font-weight: 800; letter-spacing: -0.5px; }
-    .brand span { color: var(--accent-blue); }
-    .status-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(16, 185, 129, 0.12); color: var(--accent-emerald);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 5px 14px; border-radius: 99px;
-      font-size: 12px; font-weight: 600;
-    }
-    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); }
-
-    /* ── BENTO GRID SYSTEM ── */
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 1.25rem;
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(251,247,242,0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
     }
 
-    .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      padding: 1.75rem;
+    .nav-brand {
+      font-size: 18px; font-weight: 800;
+      color: var(--ink); text-decoration: none;
+    }
+
+    .nav-tabs { display: flex; gap: 4px; list-style: none; }
+
+    .nav-tabs button {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px; font-weight: 600;
+      color: var(--ink-muted);
+      padding: 6px 14px; border-radius: 8px;
+      transition: background 0.18s, color 0.18s;
       position: relative;
-      overflow: hidden;
-      transition: border-color 0.25s, transform 0.25s;
-    }
-    .card:hover {
-      border-color: var(--card-border-hover);
-      transform: translateY(-2px);
     }
 
-    /* Grid Span Configurations */
-    .span-8 { grid-column: span 8; }
-    .span-4 { grid-column: span 4; }
-    .span-6 { grid-column: span 6; }
-    .span-12 { grid-column: span 12; }
+    .nav-tabs button:hover { background: var(--accent-lt); color: var(--accent); }
 
-    /* ── HERO CELL ── */
-    .hero-tag {
-      font-size: 12px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.1em; color: var(--accent-blue); margin-bottom: 0.75rem;
-    }
-    .hero-name {
-      font-size: 36px; font-weight: 800; line-height: 1.2;
-      letter-spacing: -1px; margin-bottom: 1rem;
-    }
-    .hero-desc { color: var(--text-muted); font-size: 15px; margin-bottom: 1.5rem; }
-    .hero-desc strong { color: #fff; }
-
-    .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255, 255, 255, 0.05); color: #fff;
-      padding: 7px 14px; border-radius: 8px; border: 1px solid var(--card-border);
-      font-size: 13px; font-weight: 600; text-decoration: none;
-      transition: background 0.2s;
-    }
-    .btn-link:hover { background: rgba(255, 255, 255, 0.12); color: var(--accent-blue); }
-
-    /* ── PROFILE PICTURE CELL ── */
-    .profile-card {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center;
-    }
-    .avatar {
-      width: 110px; height: 110px; border-radius: 20px;
-      object-fit: cover; border: 2px solid var(--accent-blue);
-      margin-bottom: 1rem;
-    }
-    .profile-role { font-weight: 700; font-size: 15px; }
-    .profile-sub { font-size: 12px; color: var(--text-muted); }
-
-    /* ── STATS CELL ── */
-    .stat-number { font-size: 34px; font-weight: 800; color: var(--accent-blue); font-family: 'JetBrains Mono', monospace; }
-    .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
-
-    /* ── LIVE CODE / SQL MOCKUP CELL ── */
-    .code-box {
-      background: var(--code-bg);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px; padding: 1rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px; color: #CBD5E1;
-      overflow-x: auto;
-    }
-    .code-header {
-      display: flex; gap: 6px; margin-bottom: 10px;
-    }
-    .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .dot-r { background: #EF4444; } .dot-y { background: #F59E0B; } .dot-g { background: #10B981; }
-    .kw { color: #F472B6; font-weight: 600; }
-    .fn { color: #38BDF8; }
-    .str { color: #34D399; }
-
-    /* ── PROJECT CARDS ── */
-    .badge {
-      display: inline-block; font-size: 11px; font-weight: 700;
-      padding: 3px 8px; border-radius: 6px;
-      background: rgba(56, 189, 248, 0.1); color: var(--accent-blue);
-      border: 1px solid rgba(56, 189, 248, 0.2); margin-bottom: 0.8rem;
-    }
-    .project-title { font-size: 18px; font-weight: 700; margin-bottom: 0.5rem; }
-    .project-text { font-size: 13.5px; color: var(--text-muted); margin-bottom: 1.25rem; }
-
-    .impact-callout {
-      background: rgba(16, 185, 129, 0.08);
-      border-left: 3px solid var(--accent-emerald);
-      padding: 8px 12px; border-radius: 0 8px 8px 0;
-      font-size: 12.5px; color: #E2E8F0; margin-bottom: 1.25rem;
+    .nav-tabs button.active {
+      background: var(--accent-lt);
+      color: var(--accent);
     }
 
-    .card-link {
-      font-size: 13px; font-weight: 700; color: var(--accent-blue);
-      text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
-    }
-    .card-link:hover { text-decoration: underline; }
+    /* ── PAGE SECTIONS ── */
+    .page { display: none; animation: fadeUp 0.3s ease; }
+    .page.active { display: block; }
 
-    /* ── TECH STACK TAGS ── */
-    .stack-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .tag {
-      font-size: 11.5px; background: rgba(255, 255, 255, 0.04);
-      padding: 4px 10px; border-radius: 6px; color: #CBD5E1;
-      border: 1px solid var(--card-border);
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
+
+    /* ── ABOUT LAYOUT ── */
+    .hero {
+      max-width: 960px; margin: 0 auto;
+      padding: 5rem 2.5rem;
+      display: grid; grid-template-columns: 240px 1fr;
+      gap: 4rem; align-items: start;
+    }
+
+    .sidebar {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 1rem;
+      position: sticky; top: 100px;
+    }
+
+    .avatar-wrapper {
+      width: 160px; height: 160px;
+      border-radius: 50%; overflow: hidden;
+      border: 3px solid var(--border-md);
+      background: var(--surface);
+    }
+    .avatar-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+    .sidebar-name { font-size: 16px; font-weight: 700; text-align: center; color: var(--ink); }
+    .sidebar-role { font-size: 13px; color: var(--ink-muted); text-align: center; }
+
+    .sidebar-info { width: 100%; display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+
+    .info-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-muted); }
+    .info-item svg { width: 16px; height: 16px; stroke: var(--accent-md); fill: none; stroke-width: 1.8; flex-shrink: 0; }
+    .info-item a { color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
+    .info-item a:hover { color: var(--accent); }
+
+    /* ── ABOUT TEXT ── */
+    .main-content { padding-top: 0.5rem; }
+
+    .section-label {
+      font-size: 11px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      font-weight: 700; margin-bottom: 0.75rem;
+    }
+
+    .about-name {
+      font-size: 32px; font-weight: 800;
+      line-height: 1.25; color: var(--ink);
+      margin-bottom: 1.5rem; letter-spacing: -0.5px;
+    }
+
+    .about-text { color: var(--ink-muted); font-size: 15px; line-height: 1.85; margin-bottom: 1.2rem; }
+
+    /* ── PROJECTS PAGE ── */
+    .projects-wrap {
+      max-width: 960px; margin: 0 auto;
+      padding: 4rem 2.5rem 5rem;
+    }
+
+    .projects-heading {
+      font-size: 28px; font-weight: 800;
+      color: var(--ink); margin-bottom: 2rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: all 0.25s ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent-md);
+      box-shadow: 0 10px 30px rgba(100,50,10,0.08);
+      transform: translateY(-4px);
+    }
+
+    .project-number { font-size: 11px; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 700; margin-bottom: 1rem; }
+    .project-title { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 0.8rem; }
+    .project-desc { font-size: 14px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+
+    .project-link-row { display: flex; align-items: center; gap: 8px; margin-top: auto; }
+    .project-link-row svg { width: 16px; height: 16px; stroke: var(--accent-md); fill: none; stroke-width: 2; }
+    .project-link-row a { font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 700; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); text-align: center; padding: 3rem; color: var(--ink-faint); font-size: 13px; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 860px) {
-      .span-8, .span-4, .span-6 { grid-column: span 12; }
-      .bento-grid { display: flex; flex-direction: column; }
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 3rem; }
+      .sidebar { position: static; }
+      nav { padding: 0 1.5rem; }
+      .projects-wrap { padding: 3rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <!-- NAV -->
-  <nav>
-    <div class="brand">hoanganh<span>.data</span></div>
-    <div class="status-badge">
-      <span class="status-dot"></span> Sẵn sàng thực tập / Fresher
-    </div>
-  </nav>
+<nav>
+  <a class="nav-brand" href="#">Hoàng Anh</a>
+  <ul class="nav-tabs">
+    <li><button id="btn-about" class="active" onclick="switchTab('about', this)">Giới Thiệu</button></li>
+    <li><button id="btn-projects" onclick="switchTab('projects', this)">Dự Án</button></li>
+  </ul>
+</nav>
 
-  <!-- BENTO GRID -->
-  <main class="bento-grid">
-    
-    <!-- 1. HERO CARD (Span 8) -->
-    <section class="card span-8">
-      <p class="hero-tag">Fintech × Analytics</p>
-      <h1 class="hero-name">Huỳnh Hoàng Anh</h1>
-      <p class="hero-desc">
-        Sinh viên Công nghệ Tài chính (Fintech) tại <strong>UFM</strong>. Chuyên môn hóa vào việc biến dữ liệu kinh doanh phức tạp thành các luồng xử lý sạch và báo cáo trực quan hỗ trợ ra quyết định.
-      </p>
-      <div class="social-links">
-        <a class="btn-link" href="https://github.com/anhhuynhhoang1910" target="_blank">
-          GitHub ↗
-        </a>
-        <a class="btn-link" href="https://linkedin.com/in/anh-hoang-b46583259" target="_blank">
-          LinkedIn ↗
-        </a>
-        <span class="btn-link" style="color: var(--text-muted); border-color: transparent;">📍 TP. Hồ Chí Minh</span>
+<div id="tab-about" class="page active">
+  <section class="hero">
+    <aside class="sidebar">
+      <div class="avatar-wrapper">
+        <img src="myimage.jpg" alt="Huỳnh Hoàng Anh" />
       </div>
-    </section>
-
-    <!-- 2. AVATAR & IDENTITY (Span 4) -->
-    <aside class="card span-4 profile-card">
-      <img class="avatar" src="myimage.jpg" alt="Huỳnh Hoàng Anh" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&q=80'" />
-      <div class="profile-role">Data Analyst</div>
-      <div class="profile-sub">Nghiệp vụ Tài chính Doanh nghiệp</div>
+      <div class="sidebar-name">Huỳnh Hoàng Anh</div>
+      <div class="sidebar-role">Data Analyst · Fintech Student</div>
+      <div class="sidebar-info">
+        <div class="info-item">
+          <svg viewBox="0 0 24 24"><path d="M12 21C12 21 5 13.5 5 9a7 7 0 0114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <span>TP. Hồ Chí Minh, Việt Nam</span>
+        </div>
+        <div class="info-item">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 014 0v4M11 10v7"/></svg>
+          <a href="https://linkedin.com/in/anh-hoang-b46583259" target="_blank">LinkedIn</a>
+        </div>
+        <div class="info-item">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 00-1.3-3.2 4.2 4.2 0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 00-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 00-.1 3.2A4.6 4.6 0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+          <a href="https://github.com/anhhuynhhoang1910" target="_blank">GitHub</a>
+        </div>
+      </div>
     </aside>
 
-    <!-- 3. METRIC CELL 1 (Span 4) -->
-    <div class="card span-4">
-      <div class="stat-number">56,000+</div>
-      <div class="stat-label">Bản ghi Bất động sản đã xử lý & chuẩn hóa bằng SQL thuần</div>
-    </div>
-
-    <!-- 4. METRIC CELL 2 (Span 4) -->
-    <div class="card span-4">
-      <div class="stat-number">Fintech Core</div>
-      <div class="stat-label">Hiểu rõ cấu trúc Báo cáo Tài chính, Chỉ số Định giá & Dòng tiền</div>
-    </div>
-
-    <!-- 5. METRIC CELL 3 (Span 4) -->
-    <div class="card span-4">
-      <div class="stat-number">ETL Pipeline</div>
-      <div class="stat-label">Kỹ năng xử lý dữ liệu khuyết thiếu, CTEs & Phân rã dữ liệu</div>
-    </div>
-
-    <!-- 6. CODE LOGIC SHOWCASE (Span 6) -->
-    <section class="card span-6">
-      <span class="badge">Data Cleaning Logic</span>
-      <h3 class="project-title">Tư duy truy vấn SQL thực chiến</h3>
-      <p class="project-text">Minh họa kỹ thuật khử trùng lặp và lấp dữ liệu khuyết thiếu bằng Window Functions thay vì xóa thủ công:</p>
-      
-      <div class="code-box">
-        <div class="code-header">
-          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
-        </div>
-        <pre><code><span class="kw">WITH</span> RowNumCTE <span class="kw">AS</span> (
-  <span class="kw">SELECT</span> *,
-    <span class="fn">ROW_NUMBER</span>() <span class="kw">OVER</span> (
-      <span class="kw">PARTITION BY</span> ParcelID, PropertyAddress, 
-                   SalePrice, LegalReference
-      <span class="kw">ORDER BY</span> UniqueID
-    ) <span class="kw">AS</span> row_num
-  <span class="kw">FROM</span> NashvilleHousing
-)
-<span class="kw">DELETE FROM</span> RowNumCTE 
-<span class="kw">WHERE</span> row_num > 1;</code></pre>
-      </div>
-    </section>
-
-    <!-- 7. FEATURED PROJECT 1 (Span 6) -->
-    <article class="card span-6">
-      <span class="badge" style="color: var(--accent-emerald); border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.08);">Case Study #1</span>
-      <h3 class="project-title">Nashville Housing Data Cleaning</h3>
-      <p class="project-text">
-        Chuẩn hóa tập dữ liệu bất động sản thực tế bị phân mảnh nặng: lấp địa chỉ trống qua Self-Join, phân tách địa chỉ và xử lý trùng lặp.
+    <div class="main-content">
+      <p class="section-label">Giới thiệu</p>
+      <h1 class="about-name">Huỳnh Hoàng Anh</h1>
+      <p class="about-text">
+        Chào bạn, mình là <strong>Huỳnh Hoàng Anh</strong>, sinh viên chuyên ngành Công nghệ Tài chính (Fintech) tại Đại học Tài chính - Marketing (UFM).
       </p>
-      <div class="impact-callout">
-        <strong>Kết quả:</strong> 100% dữ liệu được làm sạch đồng nhất, sẵn sàng nạp trực tiếp vào kho dữ liệu phục vụ mô hình phân tích giá.
-      </div>
-      <div class="stack-tags" style="margin-bottom: 1.25rem;">
-        <span class="tag">SQL Server</span>
-        <span class="tag">Self Join</span>
-        <span class="tag">CTEs</span>
-        <span class="tag">Data Wrangling</span>
-      </div>
-      <a class="card-link" href="https://github.com/anhhuynhhoang1910/nashville-housing-data-cleaning" target="_blank">
-        Xem Repository & SQL Script →
-      </a>
-    </article>
-
-    <!-- 8. FEATURED PROJECT 2 (Span 8) -->
-    <article class="card span-8">
-      <span class="badge" style="color: var(--accent-purple); border-color: rgba(129,140,248,0.3); background: rgba(129,140,248,0.08);">Case Study #2</span>
-      <h3 class="project-title">Remote vs. Onsite: Stress & Hiệu suất Lao động</h3>
-      <p class="project-text">
-        Phân tích tương quan giữa địa điểm làm việc (Workplace) và mức độ căng thẳng tâm lý của nhân viên. Dữ liệu chứng minh mô hình làm việc linh hoạt (Hybrid) giúp giảm thiểu áp lực hơn so với làm việc cô lập hoàn toàn.
+      <p class="about-text">
+        Với niềm đam mê khám phá giá trị từ dữ liệu, mình định hướng phát triển trở thành một <strong>Data Analyst</strong>. Mình kết hợp tư duy phân tích kỹ thuật (SQL, Python, Power BI) với kiến thức tài chính vững vàng để đưa ra các quyết định tối ưu.
       </p>
-      <div class="impact-callout">
-        <strong>Insight kinh doanh:</strong> Cung cấp dữ liệu thực chứng cho phòng HR tái thiết kế chính sách phúc lợi và lịch trực xoay vòng.
-      </div>
-      <a class="card-link" href="https://github.com/anhhuynhhoang1910/Impact-of-Remote-and-Onsite-Work-Locations" target="_blank">
-        Xem Phân tích Đầy đủ trên GitHub →
-      </a>
-    </article>
-
-    <!-- 9. SKILLS SUMMARY (Span 4) -->
-    <section class="card span-4">
-      <p class="hero-tag">Tech Stack</p>
-      <div class="stack-tags">
-        <span class="tag">SQL (MySQL / SQL Server)</span>
-        <span class="tag">Python (Pandas, NumPy)</span>
-        <span class="tag">Power BI & DAX</span>
-        <span class="tag">Financial Modeling</span>
-        <span class="tag">ETL & Data Cleaning</span>
-        <span class="tag">Star Schema Design</span>
-      </div>
-    </section>
-
-  </main>
+      <p class="about-text">
+        Dữ liệu là ngôn ngữ — và việc truyền tải nó một cách dễ hiểu là chìa khóa để tạo ra tác động thực tế.
+      </p>
+    </div>
+  </section>
 </div>
+
+<div id="tab-projects" class="page">
+  <div class="projects-wrap">
+    <p class="section-label">Danh mục</p>
+    <h2 class="projects-heading">Dự án của mình</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-number">01</div>
+        <div class="project-title">Impact of Remote and Onsite Work Locations</div>
+        <p class="project-desc">Phân tích tác động của các mô hình làm việc đối với sức khỏe tinh thần, mức độ căng thẳng và cân bằng cuộc sống.</p>
+        <div class="project-link-row">
+          <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <a href="https://github.com/anhhuynhhoang1910/Impact-of-Remote-and-Onsite-Work-Locations" target="_blank">Xem dự án →</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-number">02</div>
+        <div class="project-title">Nashville Housing Data Cleaning</div>
+        <p class="project-desc">Tập trung hoàn toàn vào giai đoạn chuẩn bị và làm sạch dữ liệu bất động sản bằng SQL.</p>
+        <div class="project-link-row">
+          <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+          <a href="https://github.com/anhhuynhhoang1910/nashville-housing-data-cleaning" target="_blank">Xem dự án →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Huỳnh Hoàng Anh</span>
+</footer>
+
+<script>
+  function switchTab(tabId, btn) {
+    // Ẩn tất cả các trang
+    document.querySelectorAll('.page').forEach(page => {
+      page.classList.remove('active');
+    });
+    // Bỏ trạng thái active của tất cả các nút
+    document.querySelectorAll('.nav-tabs button').forEach(button => {
+      button.classList.remove('active');
+    });
+    // Hiển thị trang được chọn và active nút tương ứng
+    document.getElementById('tab-' + tabId).classList.add('active');
+    btn.classList.add('active');
+    // Cuộn lên đầu trang
+    window.scrollTo(0, 0);
+  }
+</script>
 
 </body>
 </html>
